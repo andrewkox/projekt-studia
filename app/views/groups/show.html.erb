@@ -1,0 +1,22 @@
+<div class="groups-container">
+  <h1>Grupa <%= @group.name %></h1>
+  <p>🏫 <%= @group.studio.name %></p>
+
+  <h2>📘 Kursy</h2>
+  <ul>
+    <% @group.courses.each do |course| %>
+      <li><%= course.name %> (<%= course.ects %> ECTS)</li>
+    <% end %>
+  </ul>
+
+  <h2>👨‍🎓 Studenci</h2>
+  <ul>
+    <% @group.students.each do |s| %>
+      <li><%= link_to "#{s.first_name} #{s.last_name}", student_path(s) %></li>
+    <% end %>
+  </ul>
+
+  <br>
+  <%= link_to "Edytuj", edit_group_path(@group), class: "btn" %>
+  <%= link_to "Powrót", groups_path, class: "btn btn-secondary" %>
+</div>

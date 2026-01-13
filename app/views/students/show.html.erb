@@ -1,0 +1,40 @@
+<div class="student-card">
+
+  <h1><%= @student.first_name %> <%= @student.last_name %></h1>
+
+  <div class="student-info">
+    <p><strong>Album:</strong> <%= @student.album %></p>
+    <p><strong>Grupa:</strong> <%= @student.group&.name || "Brak" %></p>
+    <p>
+      <strong>Średnia ogólna:</strong>
+      <span class="avg <%= @student.average_grade.to_f >= 3 ? 'ok' : 'bad' %>">
+        <%= @student.average_grade || "brak" %>
+      </span>
+    </p>
+  </div>
+
+  <hr>
+
+  <h2>📚 Semestry</h2>
+
+  <div style="display:flex; gap:10px; margin-bottom:20px;">
+    <% @semesters.each do |sem| %>
+      <%= link_to sem.name,
+                  student_semester_path(@student, sem),
+                  data: { turbo_frame: "grades" },
+                  class: "btn" %>
+    <% end %>
+  </div>
+
+  <hr>
+
+  <turbo-frame id="grades">
+    <%= render "students/grades", student: @student, grades: @grades %>
+  </turbo-frame>
+
+  <div class="actions">
+    <%= link_to "✏️ Edytuj", edit_student_path(@student) %>
+    <%= link_to "⬅ Powrót", students_path %>
+  </div>
+
+</div>

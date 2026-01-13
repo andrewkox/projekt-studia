@@ -1,0 +1,43 @@
+<h1>📚 Studenci</h1>
+
+<table class="students-table">
+  <thead>
+  <tr>
+    <th>#</th>
+    <th>Student</th>
+    <th>Album</th>
+    <th>Grupa</th>
+    <th>Średnia</th>
+    <th>Status</th>
+    <th></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @students.each_with_index do |s, i| %>
+    <tr>
+      <td><%= i + 1 %></td>
+      <td><strong><%= s.first_name %> <%= s.last_name %></strong></td>
+      <td><%= s.album %></td>
+      <td><%= s.group&.name || "-" %></td>
+      <td class="<%= s.average_grade.to_f >= 3 ? 'ok' : 'bad' %>">
+        <%= s.average_grade || "-" %>
+      </td>
+      <td>
+        <% if s.average_grade && s.average_grade >= 3 %>
+          <span class="status ok">ZALICZONY</span>
+        <% else %>
+          <span class="status bad">NIEZALICZONY</span>
+        <% end %>
+      </td>
+      <td>
+        <%= link_to "➡", student_path(s), class: "show-btn" %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<div class="actions">
+  <%= link_to "➕ Nowy student", new_student_path, class: "add-btn" %>
+</div>

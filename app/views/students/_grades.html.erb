@@ -1,0 +1,44 @@
+<h2>Oceny</h2>
+
+<% if grades.any? %>
+  <table class="grades-table">
+    <thead>
+    <tr>
+      <th>Przedmiot</th>
+      <th>ECTS</th>
+      <th>Ocena</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% grades.each do |g| %>
+      <tr>
+        <td><%= g.course.name %></td>
+        <td><%= g.course.ects %></td>
+        <td class="<%= g.grade >= 3 ? 'ok' : 'bad' %>"><%= g.grade %></td>
+        <td>
+          <%= button_to "✖", grade_path(g),
+                        method: :delete,
+                        data: { turbo_frame: "grades" },
+                        class: "delete-btn" %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p class="empty">Brak ocen</p>
+<% end %>
+
+<h3>➕ Dodaj ocenę</h3>
+
+<%= form_with model: Grade.new, url: grades_path, data: { turbo_frame: "grades" } do |f| %>
+  <%= f.hidden_field :student_id, value: student.id %>
+
+  <div class="form-row">
+    <%= f.collection_select :course_id, Course.all, :id, :name %>
+    <%= f.number_field :grade, in: 2..5, step: 0.5 %>
+    <%= f.collection_select :semester_id, Semester.all, :id, :name %>
+    <%= f.submit "Dodaj", class: "add-btn" %>
+  </div>
+<% end %>

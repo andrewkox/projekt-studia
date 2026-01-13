@@ -1,0 +1,81 @@
+.groups-container {
+    max-width: 1100px;
+    margin: 40px auto;
+    font-family: system-ui;
+}
+
+.group-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.group-card {
+    background: white;
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,.06);
+    transition: 0.2s;
+}
+
+.group-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,.1);
+}
+
+.group-title {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.group-studio {
+    color: #666;
+    margin-top: 4px;
+}
+
+.group-actions {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn {
+    padding: 8px 14px;
+    border-radius: 10px;
+    text-decoration: none;
+    background: #111;
+    color: white;
+    font-weight: 600;
+}
+
+.btn-secondary {
+    background: #e5e5e5;
+    color: black;
+}
+
+.form-card {
+    max-width: 650px;
+    margin: 60px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 18px;
+    box-shadow: 0 10px 40px rgba(0,0,0,.1);
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}

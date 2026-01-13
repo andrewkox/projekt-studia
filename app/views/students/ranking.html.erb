@@ -1,0 +1,19 @@
+<h1>🏆 Ranking – <%= @semester.name %></h1>
+
+<table class="grades-table">
+  <tr>
+    <th>#</th>
+    <th>Student</th>
+    <th>Średnia</th>
+    <th>ECTS</th>
+  </tr>
+
+  <% @students.each_with_index do |s, i| %>
+    <tr>
+      <td><%= i+1 %></td>
+      <td><%= s.first_name %> <%= s.last_name %></td>
+      <td><%= s.average_for_semester(@semester) %></td>
+      <td><%= s.ects_for_semester(@semester) %></td>
+    </tr>
+  <% end %>
+</table>

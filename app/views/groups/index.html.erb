@@ -1,0 +1,26 @@
+<div class="groups-container">
+  <h1>📚 Grupy</h1>
+
+  <%= link_to "➕ Nowa grupa", new_group_path, class: "btn" %>
+
+  <div class="group-grid" style="margin-top:30px">
+    <% @groups.each do |group| %>
+      <div class="group-card">
+        <div class="group-title"><%= group.name %></div>
+        <div class="group-studio">
+          🏫 <%= group.studio&.name || "Brak studia" %>
+        </div>
+
+        <div style="margin-top:10px">
+          📘 <%= group.courses.count %> kursów<br>
+          👨‍🎓 <%= group.students.count %> studentów
+        </div>
+
+        <div class="group-actions">
+          <%= link_to "Otwórz", group_path(group), class: "btn" %>
+          <%= link_to "Edytuj", edit_group_path(group), class: "btn btn-secondary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<%= form_with(model: group) do |form| %>
+
+  <% if group.errors.any? %>
+    <div style="color:red">
+      <% group.errors.each do |e| %>
+        <p><%= e.full_message %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :name, "Nazwa grupy" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :studio_id, "Studio" %>
+    <%= form.collection_select :studio_id, Studio.all, :id, :name %>
+  </div>
+
+  <div class="form-group">
+    <strong>📘 Kursy</strong><br><br>
+    <% Course.all.each do |course| %>
+      <div>
+        <%= check_box_tag "group[course_ids][]", course.id, group.courses.include?(course) %>
+        <%= course.name %>
+      </div>
+    <% end %>
+  </div>
+
+  <%= form.submit "Zapisz", class: "btn" %>
+
+<% end %>

@@ -1,0 +1,107 @@
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+    }
+
+    .login-page {
+        min-height: 100vh;
+        background: linear-gradient(120deg, #1e3a8a, #2563eb);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .login-card {
+        background: white;
+        width: 380px;
+        padding: 40px;
+        border-radius: 16px;
+        box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+        text-align: center;
+    }
+
+    .login-card h1 {
+        margin-bottom: 10px;
+        font-size: 26px;
+    }
+
+    .subtitle {
+        color: #555;
+        margin-bottom: 30px;
+        font-size: 14px;
+    }
+
+    .login-card input {
+        width: 100%;
+        padding: 12px;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        margin-bottom: 15px;
+        font-size: 14px;
+    }
+
+    .login-card input:focus {
+        outline: none;
+        border-color: #2563eb;
+        box-shadow: 0 0 0 2px rgba(37,99,235,0.15);
+    }
+
+    .login-card button {
+        width: 100%;
+        padding: 12px;
+        border-radius: 10px;
+        border: none;
+        background: #2563eb;
+        color: white;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .login-card button:hover {
+        background: #1e40af;
+    }
+
+    .alert {
+        margin-top: 15px;
+        color: #dc2626;
+        font-size: 14px;
+    }
+
+    .footer {
+        margin-top: 25px;
+        font-size: 12px;
+        color: #888;
+    }
+
+    .icon {
+        font-size: 42px;
+        margin-bottom: 10px;
+    }
+</style>
+
+<div class="login-page">
+  <div class="login-card">
+    <div class="icon">🎓</div>
+    <h1>Panel dziekana</h1>
+    <div class="subtitle">System zarządzania studentami</div>
+
+    <%= form_with url: login_path do |f| %>
+      <%= f.email_field :email, placeholder: "Email", required: true %>
+      <%= f.password_field :password, placeholder: "Hasło", required: true %>
+
+      <button type="submit">Zaloguj się</button>
+    <% end %>
+
+    <% if flash[:alert] %>
+      <div class="alert"><%= flash[:alert] %></div>
+    <% end %>
+
+    <div class="footer">
+      Projekt Studium • Ruby on Rails
+    </div>
+  </div>
+</div>
