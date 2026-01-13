@@ -38,7 +38,7 @@ Projekt symuluje elektroniczny indeks studenta oraz panel dziekana.
 ## ⚙️ Instalacja
 
 ```bash
-git clone https://github.com/TWOJ_LOGIN/projekt_studia.git
+git clone https://github.com/andrewkox/projekt_studia.git
 cd projekt_studia
 bundle install
 rails db:migrate
