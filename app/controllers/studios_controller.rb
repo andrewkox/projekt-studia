@@ -5,14 +5,17 @@ class StudiosController < ApplicationController
   # DASHBOARD (panel dziekana)
   # ========================
   def dashboard
-    @students = Student.includes(:grades, :group)
+    @students = Student.all
     @groups   = Group.all
+    @courses  = Course.all
 
-    all_grades = Grade.pluck(:grade)
+    all_grades = Grade.where.not(grade: nil).pluck(:grade).compact
     @school_avg = all_grades.any? ? (all_grades.sum.to_f / all_grades.size).round(2) : 0
 
     @best_student = @students.max_by { |s| s.average_grade.to_f }
   end
+
+
 
   # ========================
   # CRUD STUDIOS

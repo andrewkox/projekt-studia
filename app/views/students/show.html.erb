@@ -29,8 +29,15 @@
   <hr>
 
   <turbo-frame id="grades">
-    <%= render "students/grades", student: @student, grades: @grades %>
+    <p>Wybierz semestr aby zobaczyć oceny</p>
   </turbo-frame>
+
+
+
+
+
+
+
 
   <div class="actions">
     <%= link_to "✏️ Edytuj", edit_student_path(@student) %>
